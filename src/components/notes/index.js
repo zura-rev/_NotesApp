@@ -1,10 +1,8 @@
 import React from 'react'
-
 import { Note } from '../note'
 import './style.css'
 
 export function Notes({ notes, removeNote }) {
-
   return (
     <div className='container some-style'>
       <ul className='list-group'>

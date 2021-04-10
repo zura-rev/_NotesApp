@@ -1,5 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-export function NotePage() {
-  return <h1>NotePage</h1>
+export function NotePage({ id }) {
+  const [note, setNote] = useState(null)
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then((response) => response.json())
+      .then((data) => setNote(data))
+  }, [])
+
+  console.log(note)
+  return (
+    <div className='container'>
+      {note ? (
+        <>
+          <p>id: {note.id}</p>
+          <p>title: {note.title}</p>
+          <p>userId: {note.userId}</p>
+          <p>completed: {note.completed?.toString()}</p>
+        </>
+      ) : null}
+    </div>
+  )
 }
