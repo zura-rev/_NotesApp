@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 export function NotePage({ id }) {
+  //console.log('props', props)
   const [note, setNote] = useState(null)
 
   useEffect(() => {
@@ -9,7 +10,6 @@ export function NotePage({ id }) {
       .then((data) => setNote(data))
   }, [])
 
-  console.log(note)
   return (
     <div className='container'>
       {note ? (
