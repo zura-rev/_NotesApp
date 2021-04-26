@@ -14,7 +14,7 @@ export default function App() {
 
   const dispatch = useDispatch()
   const state = useSelector((state) => state.counter)
-  
+
   console.log('state', state)
 
   useEffect(() => {
@@ -39,24 +39,38 @@ export default function App() {
         <Header />
         <div className='content'>
           <div className='container'>
-            <button onClick={decrement}>-</button>
-            <span>{state.counter}</span>
-            <button onClick={increment}>+</button>
+            <div className='input-group' style={{ width: '120px' }}>
+              <button className='btn btn-outline-primary' onClick={decrement}>
+                -
+              </button>
+              <span className='form-control text-center'>{state.counter}</span>
+              <button className='btn btn-outline-primary' onClick={increment}>
+                +
+              </button>
+            </div>
           </div>
+          <hr />
           <Switch>
+
             <Route
               path='/note/:id'
               render={(props) => <NotePage id={props.match.params.id} />}
             />
+
+            {/* <Route path='/notes' component={notes} /> */}
+
             <Route path='/notes'>
               <NotesPage notes={notes} removeNote={deleteNote} />
             </Route>
+
             <Route path='/about'>
               <h1>About Page</h1>
             </Route>
+
             <Route path='/'>
               <MainPage />
             </Route>
+
           </Switch>
         </div>
       </Router>
