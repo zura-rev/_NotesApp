@@ -1,19 +1,21 @@
+import { getNodeText } from '@testing-library/dom'
 import React, {useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux";
-import {getPost} from "../../actions";
+import {getPosts} from "../../actions";
 
-export function Post(id) {
-    // const history = useHistory()
-    // const getNote = (id) => {
-    //     history.push(`./posts/${id}`)
-    // }
+export function Note({ note, handleClick }) {
+  const history = useHistory()
+  const getNote = (id) => {
+    history.push(`./note/${id}`)
+  }
+
 
     const dispatch = useDispatch()
-    const {loader,  post} = useSelector((state) => state.post)
+    const {loader,  posts} = useSelector((state) => state.posts)
 
     useEffect(() => {
-        dispatch(getPost(id))
+        dispatch(getPosts())
     }, [])
 
     if(loader){
