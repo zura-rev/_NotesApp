@@ -1,21 +1,13 @@
-import { getNodeText } from '@testing-library/dom'
 import React, {useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux";
-import {getPosts} from "../../actions";
+import {getPost} from "../../actions";
 
-export function Note({ note, handleClick }) {
-  const history = useHistory()
-  const getNote = (id) => {
-    history.push(`./note/${id}`)
-  }
-
-
+export function Post({id}) {console.log('id',id)
     const dispatch = useDispatch()
-    const {loader,  posts} = useSelector((state) => state.posts)
+    const {loader,  post} = useSelector((state) => state.post)
 
     useEffect(() => {
-        dispatch(getPosts())
+        dispatch(getPost(id))
     }, [])
 
     if(loader){
@@ -23,16 +15,11 @@ export function Note({ note, handleClick }) {
     }
 
   return (
-    <li className='list-group-item d-flex justify-content-between'>
-      <div onClick={() => getNote(note.id)}>{note.title}</div>
-      <div>
-        <button
-          className='btn btn-sm btn-outline-danger'
-          onClick={() => handleClick(note.id)}
-        >
-          x
-        </button>
-      </div>
-    </li>
+      <>
+          <p>id: {post.id}</p>
+          <p>title: {post.title}</p>
+          <p>completed: {post.body?.toString()}</p>
+          <p>userId: {post.userId}</p>
+      </>
   )
 }

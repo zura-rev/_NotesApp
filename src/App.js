@@ -5,32 +5,22 @@ import { Header } from './components/navbar'
 import { Sidebar } from './components/sidebar'
 import { MainPage } from './pages/MainPage'
 import { NotesPage } from './pages/NotesPage'
-import { NotePage } from './pages/NotePage'
-import { inc, dec } from './actions'
+import { PostPage } from './pages/PostPage'
+import { inc, dec, getPosts } from './actions'
 import './App.css'
 
 export default function App() {
-  const [notes, setNotes] = useState([])
+  //const [notes, setNotes] = useState([])
 
   const dispatch = useDispatch()
   const state = useSelector((state) => state.counter)
-
-  console.log('state', state)
-
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => setNotes(data))
-  }, [])
+  const decrement = () => dispatch(dec())
+  const increment = () => dispatch(inc())
 
   const deleteNote = (id) => {
     const notes = notes.filter((item) => item.id !== id)
-    setNotes(notes)
+    //setNotes(notes)
   }
-
-  const decrement = () => dispatch(dec())
-
-  const increment = () => dispatch(inc())
 
   return (
     <div className='App'>
@@ -53,14 +43,15 @@ export default function App() {
           <Switch>
 
             <Route
-              path='/note/:id'
-              render={(props) => <NotePage id={props.match.params.id} />}
-            />
+              path='/posts/:id'
+            >
+              <PostPage />
+            </Route>
 
             {/* <Route path='/notes' component={notes} /> */}
 
             <Route path='/notes'>
-              <NotesPage notes={notes} removeNote={deleteNote} />
+              <NotesPage removeNote={deleteNote} />
             </Route>
 
             <Route path='/about'>
