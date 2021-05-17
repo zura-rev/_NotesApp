@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { Notes } from '../components/notes'
 
 export function NotesPage(props) {
