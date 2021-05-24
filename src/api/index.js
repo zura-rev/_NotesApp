@@ -31,7 +31,7 @@ export const addPost = async (post) => {
 }
 
 export const deletePost = (id) => {
-
+    
 }
 
 

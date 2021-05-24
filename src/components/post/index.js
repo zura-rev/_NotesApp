@@ -10,7 +10,6 @@ export function Post({ id }) {
     dispatch(getPost(id))
   }, [])
 
-  console.log('post', post)
 
   if (loader) {
     return <h4>...იტვირთება</h4>

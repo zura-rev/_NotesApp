@@ -6,6 +6,7 @@ import { Sidebar } from './components/sidebar'
 import { MainPage } from './pages/MainPage'
 import { NotesPage } from './pages/NotesPage'
 import { PostPage } from './pages/PostPage'
+import {AddPostPage} from './pages/AddPostPage'
 import { inc, dec, getPosts } from './actions'
 import './App.css'
 
@@ -54,12 +55,16 @@ export default function App() {
               <NotesPage removeNote={deleteNote} />
             </Route>
 
-            <Route path='/about'>
+            <Route path='/about' exact>
               <h1>About Page</h1>
             </Route>
 
-            <Route path='/'>
+            <Route path='/' exact>
               <MainPage />
+            </Route>
+
+            <Route path='/addPost' exact>
+              <AddPostPage />
             </Route>
 
           </Switch>
